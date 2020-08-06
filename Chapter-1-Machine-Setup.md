@@ -63,8 +63,7 @@ Virtual subdirectories for the module are also placed under versions
 ~/.pyenv/versions/3.6.5/envs/my-real-python-project-3.6.5
 ```
 
-## Instal OpenCV, Python, Pip, Numpy & Imutils
-
+## Instal OpenCV
 
 
 ### Download, Compile & Install OpenCV
@@ -112,4 +111,29 @@ This gives our virtualenv access to openCV which has been built and installed on
 This is because when downloaded and built openCV it was install under /usr/local/lib.
 
 
+
+## Install Numpy, Imutils, PyCharm & iPython REPL
+
+**TODO**
+
+
+
+## PyCharm Setup
+
+### Run Configuration
+
+- Set Working directory to where `imread` should start looking for files
+- Set python interpretor to the pyenv folder
+
+
+
+## Test & Confirm Environment Setup
+
+**TODO**
+
+
+
+## Setup in Ubuntu
+
+**TODO**
 

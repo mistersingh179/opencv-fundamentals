@@ -17,15 +17,54 @@ print(image)
 print(image.shape)
 ```
 
-## Manipulate
+## Manipulate Image Data
 
-```
+```python
 image[4] = 0
 print(image)
 print(image)
 ```
 
+# Resize an Image
+
+- ` cv2.resize` takes a w,h tuple 
+- and doesnt care of aspect ratio, you need to take care of that
+
+```python
+h, w = gray.shape
+resized = cv2.resize(gray, (w*2, h*2)) # doubles the image
+```
+
+
+
+```python
+h, w = gray.shape
+height = 500
+width = int(w/h * 500)
+resized = cv2.resize(gray, (w*2, h*2)) # sets height to 500 and preserves the aspect ratio
+```
+
+https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_geometric_transformations/py_geometric_transformations.html#scaling
+
+# Crop an image to get ROI
+
+```python
+face = image[60:160,320:420] # rows first and then columns
+```
+
+- This is using numpys ability to access specified elements in each dimension. 
+
+- It is inclusive of first element and not inclusive of last element specified in range.
+
+```python
+face = image[60:160][320:420] # this is not the same
+```
+
+- When we access via sqaure brackets we are changing the shape as we are just getting elements back.
+
 ## Build a Random Image
+
+Binary Image **<u>TODO</u>**
 
 ```
 a = np.random.rand(100)
@@ -56,8 +95,8 @@ print(image)
 cv2.imshow('output', image); cv2.waitKey(0);
 ```
 
-## Project - Secret Communication Image
+# Project - Secret Communication Image
 
 Take a message, encrypt in to an image, pass it forward and then decrypt it to read the message
 
-TODO
+**<u>TODO</u>**
