@@ -24,6 +24,8 @@ mask = cv2.erode(mask, None, iterations=5)
 cv2.imshow("Eroded", mask)
 ```
 
+A common trick is to first fill the contour and then erode, this way you dont loose the item itself, unless it really small and in that case you do want to loose it.
+
 #### dilate – will make disconnected foreground contours connect as it will increase the size of foreground(white) images
 
 It does the opposite, it increases the size of the foreground images.
@@ -69,3 +71,4 @@ Complete method:
 thresh2 = cv2.morphologyEx(thresh, cv2.MORPH_ERODE, kernel, iterations=1)
 ```
 
+ƒ

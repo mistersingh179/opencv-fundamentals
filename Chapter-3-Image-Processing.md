@@ -1,7 +1,5 @@
 # Image Pre-Processing
 
-
-
 ## Change Color Scheme to Gray
 
 https://docs.opencv.org/2.4/modules/imgproc/doc/miscellaneous_transformations.html#cvtcolor
@@ -174,11 +172,25 @@ It also returns the value it picked as `retVal`.
 
 ### InRange
 
-TODO
+Another way to build a binary imag, similar to `thresholding` which works on on color ranges rather than just a specific value.
 
+It takes an image, lower range of the color and higher range of the color.
+returns binary image with everything in that range as 255 (white) and rest of the pixels which are not in the range as 0 (black).
 
+```python
+inRange = cv2.inRange(blurred, 50, 110)
+```
 
+It can work on a grayscale image or on any specific channel of a color image
 
+```python
+img = cv2.imread("test.jpg")
+hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+mask = cv2.inRange(hsv,(10, 100, 20), (25, 255, 255) )
+cv2.imshow("orange", mask);cv2.waitKey();cv2.destroyAllWindows()
+```
+
+A common use case is to first know the color range of the ROI you want. You could know this by using a third party tool or just plotting it on a histograph. Then use that information to build a binary image using `inRange`. Once you have your ROI in white you can easily capture its contour as it will be the only one.
 
 ### Canny
 

@@ -13,7 +13,7 @@ https://docs.opencv.org/3.4/d9/d8b/tutorial_py_contours_hierarchy.html
 - So when applied to a binary image where the ROI is all 255 (white) and the rest is all 0 (black) then it can gives us all the points of the ROI's bondary.
 
 ```python
-contours, hierarchy = cv2.findContouts(binary_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+contours, hierarchy = cv2.findContours(binary_image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 ```
 
 #### Common `mode` values:
@@ -33,10 +33,10 @@ contours, hierarchy = cv2.findContouts(binary_image, cv2.RETR_EXTERNAL, cv2.CHAI
 
 `hierarchy` : is an optional array with same length as that of the returned  `contours` array. For the `ith` contour in list `contours`, `hierarychy[i]` is an array with 4 values. 
 
-- value of `hierarchy[i][0]`is the index of the contour which is the next contour at the same hierarchical value
-- value of `hierarchy[i][1]`is the index of the contour which is the previous contour at the same hierarchical value
-- value of `hierarchy[i][3]`is the index of the contour which is the first child contour
-- value of `hierarchy[i][4]`is the index of the contour which is the first parent contour
+- value of `hierarchy[0][i][0]`is the index of the contour which is the next contour at the same hierarchical value
+- value of `hierarchy[0][i][1]`is the index of the contour which is the previous contour at the same hierarchical value
+- value of `hierarchy[0][i][2]`is the index of the contour which is the first child contour
+- value of `hierarchy[0][i][3]`is the index of the contour which is the first parent contour
 
 https://docs.opencv.org/3.4/d9/d8b/tutorial_py_contours_hierarchy.html
 
@@ -206,7 +206,7 @@ cv2.ellipse(ellipse_image, ellipse, (0,255,0), 3)
 
 ## ROI Extraction with a mask built with Contours
 
-A mask is a binary image with just the object or objects you want filled in with white and everything else black. It is normally used  to pass in to other functions like `bitwise_and`, `cv2.mean` along with the image so that function knows where in the image to operate. 
+A mask is a binary image with just the object or objects you want filled in with white and everything else black. It is normally used  to pass in to other functions like `bitwise_and`, `cv2.mean` , `cv2.calcHist ` along with the image so that function knows where in the image to operate. 
 
 - Draw contours and identify the contour which is of interest
 - Make a new blank image of same shape but with black background
@@ -343,6 +343,7 @@ For this to work, we need 4 points, this is simpler in sum cases when you have a
 
 
 ```python
+from pyimagesearch.transform import four_point_transform
 dst = four_point_transform(image, contour.reshape(4, 2))
 cv2.imshow('image', dst)
 cv2.waitKey(0)
