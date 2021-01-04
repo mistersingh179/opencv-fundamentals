@@ -2,7 +2,7 @@ import cv2
 # from binary_image_helpers import various_binary_images
 # from contour_helper import inspect_all_contours
 import numpy as np
-from imutils.perspective import four_point_transform
+# from imutils.perspective import four_point_transform
 
 def number_of_eggs(frame, waitTime=500):
     image = frame.copy()
@@ -77,7 +77,7 @@ def number_of_eggs(frame, waitTime=500):
     contour_image = image.copy()
     cv2.drawContours(contour_image, [box_contour], -1, (0, 255, 0), 3)
     cv2.imshow('processing', contour_image)
-    cv2.waitKey(waitTime)
+    cv2.waitKey(0)
 
     peri = cv2.arcLength(box_contour, True)
     approx_cnt = cv2.approxPolyDP(box_contour, peri * 0.04, True)
@@ -131,7 +131,7 @@ def number_of_eggs(frame, waitTime=500):
     cv2.waitKey(waitTime)
 
     retVal, binary_image = cv2.threshold(blurred, 200, 255, cv2.THRESH_BINARY)
-    various_binary_images(blurred, waitPeriod=2000, windowName='binary images')
+    # various_binary_images(blurred, waitPeriod=2000, windowName='binary images')
 
     cv2.imshow('processing', binary_image)
     cv2.waitKey(waitTime)
@@ -139,6 +139,9 @@ def number_of_eggs(frame, waitTime=500):
     contour_image = image.copy()
     contours, hierarchy = cv2.findContours(binary_image, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     print(len(contours))
+    cv2.drawContours(contour_image, contours, -1, (255, 255, 0), 1)
+    cv2.imshow('processing', contour_image)
+    cv2.waitKey(0)
 
     selected_contours = []
     for index, cnt in enumerate(contours):
@@ -149,9 +152,9 @@ def number_of_eggs(frame, waitTime=500):
             print('skipping')
 
     print('selected contours: ', len(selected_contours))
-    cv2.drawContours(contour_image, selected_contours, -1, (0, 255, 0), -1)
+    cv2.drawContours(contour_image, selected_contours, -1, (0, 255, 0), 1)
     cv2.imshow('processing', contour_image)
-    cv2.waitKey(waitTime)
+    cv2.waitKey(0)
 
     circle_count = 0
     circle_contours = []
@@ -190,7 +193,7 @@ if __name__ == '__main__':
     image = cv2.imread('images/eggs_2_with_1_outside.jpeg')
     cv2.imshow('input', image)
     cv2.waitKey(0)
-    count = number_of_eggs(image, waitTime=0)
+    count = number_of_eggs(image, waitTime=100)
     cv2.putText(image, f"Number of eggs inside the box: {count}", (30, 30), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 255, 0), 2)
     cv2.imshow('output', image)
     cv2.waitKey(0)

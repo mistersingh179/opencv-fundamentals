@@ -10,4 +10,5 @@ for i in range(100):
 
 cv2.imshow('output', a)
 cv2.waitKey(0)
+
 cv2.imwrite('./random_binary_image.png', a)

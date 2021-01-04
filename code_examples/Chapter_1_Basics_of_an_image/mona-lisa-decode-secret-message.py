@@ -11,5 +11,3 @@ for col in row:
     message = message + chr(col[0])
 
 print(message)
-
-

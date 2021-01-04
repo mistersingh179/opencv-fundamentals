@@ -4,12 +4,12 @@ import imutils
 def detect_tshirt(image):
 
     # HSV by using interactiveColorDetect.py
-    lower_range_in_hsv = (0, 85, 115)
-    higher_range_in_hsv = (255, 110, 135)
+    lower_range_in_lab = (0, 85, 115)
+    higher_range_in_lab = (255, 110, 135)
 
-    hsvimage = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
-    blurred_hsv_image = cv2.GaussianBlur(hsvimage, (5, 5), None)
-    thresh = cv2.inRange(blurred_hsv_image, lower_range_in_hsv, higher_range_in_hsv)
+    labimage = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+    blurred_lab_image = cv2.GaussianBlur(labimage, (5, 5), None)
+    thresh = cv2.inRange(blurred_lab_image, lower_range_in_lab, higher_range_in_lab)
     # thresh = cv2.erode(thresh, None, iterations=5)
     # thresh = cv2.dilate(thresh, None, iterations=5)
 
@@ -35,7 +35,7 @@ def detect_tshirt(image):
             return False
 
 if __name__ == '__main__':
-    image = cv2.imread('./images/green_tshhirt_on_chair2.jpg')
+    image = cv2.imread('./images/green_tshirt4.jpg')
     cv2.imshow('foo', image)
     cv2.waitKey(0)
     ans = detect_tshirt(image)

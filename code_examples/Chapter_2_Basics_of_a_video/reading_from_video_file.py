@@ -7,7 +7,7 @@ orignal_height = int(vs.get(cv2.CAP_PROP_FRAME_HEIGHT))
 print(f'original_fps: {original_fps}, orignal_width: {orignal_width}, orignal_height: {orignal_height}')
 
 cv2.namedWindow("output")
-cv2.waitKey(0)
+cv2.waitKey(-1)
 while True:
     grabbed, frame = vs.read()
     if grabbed == False:
